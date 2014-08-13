@@ -30,11 +30,14 @@ public class JexboxConnectorPlayImpl extends JexboxConnectorImpl implements Jexb
 		sendWithMeta(e, request, session, null);
 	}
 	
-	public void sendWithMeta(Throwable e, RequestHeader request, Session session, Map<String, Map<String, String>> metaD){
+	public void sendWithMeta(Throwable ex, RequestHeader request, Session session, Map<String, Map<String, String>> metaD){
 		try {
 			if(metaD == null){
 				metaD = new HashMap<String, Map<String, String>>();
 			}
+			
+			Throwable e = removeInfrastructure(ex);
+
 			addPageTrace(e, metaD);
 			
 			JsonObject json = json(e, metaD);
@@ -146,4 +149,15 @@ public class JexboxConnectorPlayImpl extends JexboxConnectorImpl implements Jexb
 			req.add("Version", new JsonPrimitive(String.valueOf(reqHTTP.version())));
 	}
 	
+    protected Throwable removeInfrastructure(Throwable e){
+    	if(e.getCause() != null){
+    		if(e.getClass().getName().startsWith("play.api.Application$$anon$")){
+        			return removeInfrastructure(e.getCause());
+    		}else{
+    			return e;
+    		}
+    	}else{
+    		return e;
+    	}
+    }
 }
