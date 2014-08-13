@@ -36,9 +36,9 @@ public class JexboxConnectorPlayImpl extends JexboxConnectorImpl implements Jexb
 				metaD = new HashMap<String, Map<String, String>>();
 			}
 			
+			addPageTrace(ex, metaD);
+			
 			Throwable e = removeInfrastructure(ex);
-
-			addPageTrace(e, metaD);
 			
 			JsonObject json = json(e, metaD);
 			addRequestMetaData(request, json);
