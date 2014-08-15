@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.jexbox.connector</groupId>
   <artifactId>jexbox-play</artifactId>
-  <version>0.0.2</version>
+  <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>Jexbox Play! Framework Connector Plugin</name>
   <description>Jexbox Play! Framework connector hooks as ExceptionHandler, so any uncaught exceptions in your Play! application will be sent to your Jexbox database. The connector extracts complete exception stack trace, including nested exceptions, error message and system properties and page/component traces</description>
@@ -86,7 +86,7 @@
         <dependency>
             <groupId>com.typesafe.play</groupId>
             <artifactId>play_2.11</artifactId>
-            <version>2.3.1</version>
+            <version>2.3.0</version>
         </dependency>
 
   </dependencies>
