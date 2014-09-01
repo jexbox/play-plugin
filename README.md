@@ -1,6 +1,8 @@
-## Jexbox connector for Play! 2.3.x
+## Abount Jexbox
 
-## How to Install
+<a target="_blank" href="https://jexbox.com">Jexbox<a/> is a powerful Java based exception tracking system which captures and stores application exceptions in online database. There is no need to search endless log files - stored exception data (type, message, stack trace, line in page, request & session data) is available at any time in your account. Thanks to its intelligent grouping & report system, software engineers are now capable to track all possible exception situations by searching and analyzing existing data.
+
+## How to Install the Connector for Play! 2.3.x
 
 **Managed dependencies**
 
@@ -15,11 +17,11 @@ Add `jexbox-play` dependencies to your `project/Build.scala` file as follow
     resolvers += "sonatype snapshots" at "https://oss.sonatype.org/content/repositories/snapshots/"
 
 **Manual Jar Installation**  
-Download the latest <a class="downloadlink" href="/download/jexbox-play-0.0.2.jar"><i>jexbox-play-0.0.2.jar</i></a> and place it in the `lib/` folder.  
+Download the latest <a href="https://jexbox.com/download/jexbox-play-0.0.2.jar">jexbox-play-0.0.2.jar</a> and place it in the `lib/` folder.  
 The connector depends on  
-<a class="downloadlink" target="_blank" href="/download/jexbox-core-0.0.1.jar">jexbox-core-0.0.1.jar</a>  
-<a class="downloadlink" target="_blank" href="https://code.google.com/p/google-gson/">com.google.code.gson</a>  
-<a class="downloadlink" target="_blank" href="http://commons.apache.org/proper/commons-codec/download_codec.cgi">commons-codec</a>  
+<a target="_blank" href="https://jexbox.com/download/jexbox-core-0.0.1.jar">jexbox-core-0.0.1.jar</a>  
+<a target="_blank" href="https://code.google.com/p/google-gson/">com.google.code.gson</a>  
+<a target="_blank" href="http://commons.apache.org/proper/commons-codec/download_codec.cgi">commons-codec</a>  
 
 The Play! Framework connector is implemented as plug-in for Play! applications and can be declared in `conf/play.plugins` file as follow  
   
