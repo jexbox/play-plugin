@@ -20,16 +20,43 @@ The connector depends on
 <a class="downloadlink" target="_blank" href="http://commons.apache.org/proper/commons-codec/download_codec.cgi">commons-codec</a>  
 
 The Play! Framework connector is implemented as plug-in for Play! applications and can be declared in conf/play.plugins file as follow  
+  
     10000:com.jexbox.connector.play.JexboxConnectorPlayPlugin  
 
 Then to handle automatically non-catched exceptions, decoration of the GlobalSettings will be required in application Global class  
-    public Promise&lt;Result&gt; onError(RequestHeader request, Throwable t) {  
+
+    public Promise<Result> onError(RequestHeader request, Throwable t) {  
         Session session = Http.Context.current().session();  
         JexboxConnectorPlayPlugin jbp = Play.application().plugin(JexboxConnectorPlayPlugin.class);  
         jbp.getJexboxConnector().send(t, request, session);  
         return super.onError(request, t);  
     }  
-    
 
+Then the connector should be configured with settings in the con/application.conf file as follow  
+            
+    #Required  
+    com.jexbox.connector.play.app-id=copy here the application ID, available in www.jexbox.com admin panel  
+      
+    #Optional  
+    com.jexbox.connector.play.host=  
+    com.jexbox.connector.play.environment=  
+    com.jexbox.connector.play.ssl=  
+    com.jexbox.connector.play.appVersion=  
+    com.jexbox.connector.play.background=  
+    com.jexbox.connector.play.proxyHost=  
+    com.jexbox.connector.play.proxyPort=  
+    com.jexbox.connector.play.useSystemProxy=
+
+To send catched exceptions, the instance of Jexbox connector can be obtained in application controllers as follow  
+
+    ...  
+    ...  
+    ...
+    } catch (Throwable e) {  
+        Session session = Http.Context.current().session();  
+        Request request = Http.Context.current().request();  
+        JexboxConnectorPlayPlugin jbp = Play.application().plugin(JexboxConnectorPlayPlugin.class);  
+        jbp.getJexboxConnector().send(t, request, session);
+    }
 
 
