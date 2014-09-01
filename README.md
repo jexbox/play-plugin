@@ -1,4 +1,4 @@
-## Abount Jexbox
+## About Jexbox
 
 <a target="_blank" href="https://jexbox.com">Jexbox<a/> is a powerful Java based exception tracking system which captures and stores application exceptions in online database. There is no need to search endless log files - stored exception data (type, message, stack trace, line in page, request & session data) is available at any time in your account. Thanks to its intelligent grouping & report system, software engineers are now capable to track all possible exception situations by searching and analyzing existing data.
 
