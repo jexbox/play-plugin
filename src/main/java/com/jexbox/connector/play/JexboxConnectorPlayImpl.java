@@ -56,12 +56,15 @@ public class JexboxConnectorPlayImpl extends JexboxConnectorImpl implements Jexb
 		if(e instanceof PlayException.ExceptionSource){
 			PlayException.ExceptionSource error = (PlayException.ExceptionSource) e;
 			
+			System.out.println("@@@@@@@@@@@@@@@@@@@@@@ " + error.sourceName());
+			
 			StringBuffer buff = new StringBuffer();
 			buff.append("<div class=\"play-error-page\">");
 			buff.append("<h2> In "+error.sourceName()+":"+error.line()+"</h2>");
 			buff.append("<div class=\"source-code\">");
 
-			String[] split = error.input().split("\n");
+			String input = error.input();
+			String[] split = (input == null || input.length() == 0) ? new String[]{} : input.split("\n");
 			for (int i = 1; i <= split.length; i++) {
 				String line = split[i-1];
 				if(i == error.line()){
