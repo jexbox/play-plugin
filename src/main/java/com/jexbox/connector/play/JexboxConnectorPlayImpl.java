@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.lang3.StringEscapeUtils;
 
 import play.api.PlayException;
 import play.mvc.Http.RequestHeader;
@@ -56,8 +57,6 @@ public class JexboxConnectorPlayImpl extends JexboxConnectorImpl implements Jexb
 		if(e instanceof PlayException.ExceptionSource){
 			PlayException.ExceptionSource error = (PlayException.ExceptionSource) e;
 			
-			System.out.println("@@@@@@@@@@@@@@@@@@@@@@ " + error.sourceName());
-			
 			StringBuffer buff = new StringBuffer();
 			buff.append("<div class=\"play-error-page\">");
 			buff.append("<h2> In "+error.sourceName()+":"+error.line()+"</h2>");
@@ -67,13 +66,15 @@ public class JexboxConnectorPlayImpl extends JexboxConnectorImpl implements Jexb
 			String[] split = (input == null || input.length() == 0) ? new String[]{} : input.split("\n");
 			for (int i = 1; i <= split.length; i++) {
 				String line = split[i-1];
+				String escaped = StringEscapeUtils.escapeHtml4(line);				
+
 				if(i == error.line()){
 					buff.append("<pre class=\"error\" data-file=\""+error.sourceName()+"\" data-line=\""+i+"\">");
 				}else{
 					buff.append("<pre data-file=\""+error.sourceName()+"\" data-line=\""+i+"\">");
 				}
 				buff.append("<span class=\"line\">"+i+"</span>");
-				buff.append("<span class=\"code\">"+line+"</span>");
+				buff.append("<span class=\"code\">"+escaped+"</span>");
 				buff.append("</pre>");
 			}
 				
